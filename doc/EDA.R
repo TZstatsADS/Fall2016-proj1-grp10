@@ -2,18 +2,18 @@ library(data.table)
 library(vcd)
 #set direction
 getwd()
-setwd("/Users/sun93/Documents/ADS/pro1/")
+setwd("/Users/sun93/Documents/ADS/Fall2016-proj1-grp10/")
 
 #load disability file
-dis <- fread('data_dis.csv') 
+dis <- fread('data/data_dis.csv') 
 #load military file
-mil <- fread('data_MIL.csv')
+mil <- fread('data/data_MIL.csv')
 #load race file
-rac <- fread('data_RAC1P.csv')
+rac <- fread('data/data_RAC1P.csv')
 #load education file
-schl <- fread('data_SCHL.csv') 
+schl <- fread('data/data_SCHL.csv') 
 #load veteran file
-vps <- fread('data_vps.csv') 
+vps <- fread('data/data_vps.csv') 
 
 # mosaic plot based on disability
 dis <- as.data.frame(dis)
