@@ -243,7 +243,7 @@ f <- function(col1){ #col1 ->col2
 
 # 4 Bar Charts (rename)??
 
-# 5 Comparision (rename)??
+# 5 Comparison (rename)??
 
 # 6 Conclusion
 
