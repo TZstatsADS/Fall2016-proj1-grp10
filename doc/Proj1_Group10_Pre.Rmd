@@ -1,0 +1,250 @@
+---
+title: "So You Still Believe in Marriage Vow?"
+author: "Chi Zhang, Han Cui, Jiayi Wang, Xuechun Sun"
+date: "September 20, 2016"
+output: html_document
+---
+
+"In the name of God, I, take you, to be my husband/wife, to have and to hold from this day forward, for better or worse, for richer or poorer, in sickness and in health, to love and to cherish all the days of my life. This is my solemn vow."
+
+<div style="width:400px; height=300px">
+![](https://github.com/TZstatsADS/Fall2016-proj1-grp10/blob/master/figs/pic1.jpg)
+
+</br>
+
+![](https://github.com/TZstatsADS/Fall2016-proj1-grp10/blob/master/figs/pic2.png)
+</div>
+
+</br>
+</br>
+
+So you still believe in fairy tale?
+
+Time to wake up.
+
+# 1 Introduction
+
+<p>
+In this project, we seek to find out features that may affect people’s marriage status. Are they truly loyal to their wedding vows? Or are there certain patterns or factors that may lead their marriage to end?
+</p>
+
+We choose 'marital status' and 'number of times married' as measurement of a person's performance on marriage. By relating this to other factors, such as income, eduction level, or health status, we wish to find some patterns upon them.
+
+We may find answers for some interesting questions, for example, does high income help people keep marriage steady? Should we listen to parents’ suggestions to break up with boyfriend who has a severe disease or disability? Is it a good idea to get married with a person who has a doctor degree?
+
+Our goal is to find related factors that may bring negative effects to marriage, and avoid them. 
+
+# 2 Data Selection
+### 2.1 Marriage Performance
+We tag marriage performance by two measurement: 'Marital Status' and 'Number of Times Married'.
+
+a. fac = 1 (Good Marriage Performance): the number of times married is one and the marital status is 'not divorced' now, we think this person does very well in marriage.
+
+b. fac = 2 (Poor Marriage Performance): the number of times married is one and the marital status is 'divorced' now, or the number of times is two and the marital status is 'not divorced' now, we think this person performs not bad in marriage.
+
+c. fac = 3 (Inferior Marriage Performance): the number of times married is three, or this number is two and the marital status is 'divorced' now, we think this person does very poor in marriage.
+
+```{r eval=FALSE}
+databad <- data_ori[(MAR == 3 | MARHT >= 2)]
+datagood <- data_ori[(MAR != 3 & MARHT < 2)]
+
+#Define a good marriage attitude
+datagood[, fac := 1, ]
+
+#Define a poor marriage attitude
+databad1 <- databad[!(MARHT >= 3 | (MARHT == 2 & MAR == 3))]
+databad1[, fac := 2, ]
+
+#Define a inferior marriage attitude
+databad2 <- databad[MARHT >= 3 | (MARHT == 2 & MAR == 3)]
+databad2[, fac := 3, ]
+
+data_f <- rbind(datagood, databad1, databad2)
+```
+
+### 2.2 Disability Record
+
+a. DIS = 1: with a disability
+b. DIS = 2: without a disability
+
+```{r eval=FALSE}
+data_dis <- data_final[!is.na(DIS), list(DIS, fac)]
+```
+
+### 2.3 Race Code
+
+a. RAC1P = 1: White alone
+b. RAC1P = 2: Black or African American alone
+c. PAC1P = 3: American Indian alone
+d. PAC1P = 4: Asian alone
+
+```{r eval=FALSE}
+data_RAC1P <- data_final[RAC1P==1|RAC1P==2|RAC1P==3|RAC1P==6, list(RAC1P, fac)]
+```
+
+### 2.4 Educational Attainment
+a. SCHL = 1: No schooling completed
+b. SCHL = 16: Regular high school diploma
+c. SCHL = 21: Bachelor's degree
+d. SCHL = 22: Master's degree
+e. SCHL = 24: Doctorate degree
+
+```{r eval=FALSE}
+data_SCHL <- data_final[SCHL==1|SCHL==16|SCHL==21|SCHL==22|SCHL==24, list(SCHL, fac)]
+```
+
+### 2.5 Wages or Salary Income Past 12 Months
+
+```{r eval=FALSE}
+data_WAGP <- data_final[!is.na(WAGP), list(WAGP, fac)]
+```
+
+### 2.6 Veteran Period of Service
+a. VPS = 1: Gulf War: 9/2001 or later
+b. VPS = 6: Vietnam Era
+c. VPS = 11: WWII
+
+```{r eval=FALSE}
+data_VPS <- data_final[VPS==1|VPS==6|VPS==11, list(VPS, fac)]
+```
+
+
+### 2.7 Military Service
+a. MIL = 1: Now on active duty
+b. MIL = 2: On active duty in the past, but not now
+c. MIL = 3: Only on active duty for training in Reserves/National Guard 
+d. MIL = 4: Never served in the military
+
+```{r eval=FALSE}
+data_MIL <- data_final[!is.na(MIL), list(MIL, fac)]
+```
+
+# 3 Weight Incorporation
+
+We removed all NA and balanced weight for the sample data.
+
+```{r eval=FALSE}
+data_all_var <- data_final[!is.na(DIS) & (RAC1P==1|RAC1P==2|RAC1P==3|RAC1P==6) & (SCHL==1|SCHL==16|SCHL==21|SCHL==22|SCHL==24) & !is.na(WAGP) & !is.na(MIL), list(DIS, RAC1P, SCHL, WAGP, MIL, PWGTP, fac)]
+```
+
+```{r eval=FALSE}
+#load disability file
+allvar <- fread('updated_data_all_var.csv') 
+allvar <- data.frame(allvar)
+
+#clustering based on wage
+allvar$WAGP <- as.array(kmeans(allvar$WAGP, 10, nstart = 20)$cluster)
+#head(allvar)
+
+# 1.DIC 2. RAC1P  3.SCHL 4.WAGE 5.MIL 6.PWGTP 7.fac
+
+#######
+#1.wage -> dis
+f.dis <- function(col1){ 
+  a <- sort(unique(allvar[,col1]))
+  b <- sort(unique(allvar$DIS))
+  results <- matrix(NA, nrow = length(a), ncol = length(b) )
+  cou = 1
+  for (i in 1:length(a)){
+    flow <- count(allvar[which(allvar[,col1]==a[i]),],DIS, wt = PWGTP)
+    colnames(results) <- sort(b)
+    rownames(results) <- sort(a)
+    results[cou,] <-flow$n
+    cou <- cou + 1
+  }
+  return(results)
+}
+
+# Wage to fac
+f.dis(4)
+
+#######
+#2.dis -> edu
+unique(allvar$DIS)
+f.edu <- function(col1){ 
+  a <- sort(unique(allvar[,col1]))
+  b <- sort(unique(allvar$SCHL))
+  results <- matrix(NA, nrow = length(a), ncol = length(b) )
+  cou = 1
+  for (i in 1:length(a)){
+    flow <- count(allvar[which(allvar[,col1]==a[i]),],SCHL, wt = PWGTP)
+    colnames(results) <- sort(b)
+    rownames(results) <- sort(a)
+    results[cou,] <-flow$n
+    cou <- cou + 1
+  }
+  return(results)
+}
+
+# Dic to edu
+f.edu(1)
+
+#######
+#3. edu -> race
+unique(allvar$SCHL)
+unique(allvar$RAC1P)
+f.rac <- function(col1){ 
+  a <- sort(unique(allvar[,col1]))
+  b <- sort(unique(allvar$RAC1P))
+  results <- matrix(NA, nrow = length(a), ncol = length(b) )
+  cou = 1
+  for (i in 1:length(a)){
+    flow <- count(allvar[which(allvar[,col1]==a[i]),],RAC1P, wt = PWGTP)
+    colnames(results) <- sort(b)
+    rownames(results) <- sort(a)
+    results[cou,] <-flow$n
+    cou <- cou + 1
+  }
+  return(results)
+}
+
+# Edu to race
+f.rac(3)
+
+#######
+#4. race -> millitary
+unique(allvar$RAC1P)
+unique(allvar$MIL)
+f.mil <- function(col1){ 
+  a <- sort(unique(allvar[,col1]))
+  b <- sort(unique(allvar$MIL))
+  results <- matrix(NA, nrow = length(a), ncol = length(b) )
+  cou = 1
+  for (i in 1:length(a)){
+    flow <- count(allvar[which(allvar[,col1]==a[i]),],MIL, wt = PWGTP)
+    colnames(results) <- sort(b)
+    rownames(results) <- sort(a)
+    results[cou,] <-flow$n
+    cou <- cou + 1
+  }
+  return(results)
+}
+
+# race to millitary
+f.mil(2)
+
+########################################
+# each variable numbers flow to fac
+f <- function(col1){ #col1 ->col2
+  a <- sort(unique(allvar[,col1]))
+  b <- sort(unique(allvar$fac))
+  results <- matrix(NA, nrow = length(a), ncol = length(b) )
+  cou = 1
+  for (i in 1:length(a)){
+    flow <- count(allvar[which(allvar[,col1]==a[i]),],fac, wt = PWGTP)
+    colnames(results) <- sort(b)
+    rownames(results) <- sort(a)
+    results[cou,] <-flow$n
+    cou <- cou + 1
+  }
+  return(results)
+}
+```
+
+# 4 Bar Charts (rename)??
+
+# 5 Comparision (rename)??
+
+# 6 Conclusion
+
+# 6 Next Step
