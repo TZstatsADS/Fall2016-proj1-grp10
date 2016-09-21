@@ -11,10 +11,16 @@ Below is an example. If no contribution statement is provided, we will insert a 
 ---
 Sample project README statement.
 
-Project xxx
+Project Project1
 
-Team members: Avi Bond, Comma Deed, En Funn, Gem Hon
+Team members: Han Cui, Chi Zhang, Xuechun Sun, Jiayi Wang
 
-Summary: In this project, we developed a new method and improved the classification accuracy for images of cats and dogs to 99.9%
+Summary: We seek to find out features that may affect people’s marriage status. We choose 'marital status' and 'number of times married' as measurement of a person's performance on marriage. By relating this to other factors, such as income, eduction level, or health status, we find some patterns upon them. We use data visualization such as mosaic plot, bar chart and sankey diagram to find patterns among each factor.
 
-[Contribution Statement] AB, CD, EF and GH designed the study. AB and CD developed baseline classification model for evaluation. EF and GH explored feature engineering for improving the baseline model. AB, EF and GH discussed and designed the model evaluation protocol. CD carried out the computation for model evaluation. All team members contributed to the GitHub repository and prepared the presentation. All team members approve our work presented in our GitHub repository including this contribution statement.
+[Contribution Statement] 
+All team members designed the study.
+Chi, Xuechun, Jiayi explored feature engineering and cleaned data for the model. 
+Han created parallel coordinates plot, d3 parallel coordinates plot, bar charts and box plots.
+Xuechun created the mosaic plot.
+Jiayi summarized rmarkdown files.
+All team members contributed to the GitHub repository and prepared the presentation. All team members approve our work presented in our GitHub repository including this contribution statement.
