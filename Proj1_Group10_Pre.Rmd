@@ -9,9 +9,8 @@ output: html_document
 
 <div style="width:400px; height=300px">
 <img src="doc/pic1.jpg">
-</div>
 </br>
-<div style="width:400px; height=300px">
+
 <img src="doc/pic2.png">
 </div>
 
@@ -243,7 +242,7 @@ f <- function(col1){ #col1 ->col2
 
 # 4 Bar Charts
 
-```{r}
+```{r, echo=FALSE}
 ##setup environment
 library(data.table)
 library(plotly)
@@ -277,7 +276,7 @@ subdata = data[sample(1:dim(data)[1], as.integer(dim(data)[1]/10), replace=FALSE
 data_raw = data_raw[sample(1:dim(data_raw)[1], as.integer(dim(data_raw)[1]/10), replace=FALSE),]
 ```
 
-```{r}
+```{r, echo=TRUE}
 #plot
 ##wages: 
 # 1.box-plots for wage
@@ -285,7 +284,7 @@ p <- plot_ly(ggplot2::diamonds, y = data_raw$WAGP  , color = data_raw$fac , type
 p
 ```
 
-```{r}
+```{r, echo=TRUE}
 # 2. bar chart for wage
 p <- plot_ly(
   x = c("A","B","C","D","E","F","G","H","I","J"),
