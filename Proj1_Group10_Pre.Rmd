@@ -289,29 +289,6 @@ p
 
 #### b. Bar Chart
 ```{r, echo=TRUE}
-# 1. bar chart for disability
-p <- plot_ly(
-  x = c('with disability', 'without disability'),
-  y = c(7924298,50876772),
-  name = 'good marriage performance',
-  type = 'bar'
-)
-p2 <- add_trace(
-  p,
-  x = c('with disability', 'without disability'),
-  y = c(3865462,18513842),
-  name = 'poor marriage performance',
-  type = 'bar'
-)
-p3 <- add_trace(
-  p2,
-  x = c('with disability', 'without disability'),
-  y = c(1568850, 5045137),
-  name = 'inferior marriage performance',
-  type = 'bar'
-)
-p4 <- layout(p3, barmode = "stack")
-p4
 # 2. bar chart for wage
 p <- plot_ly(
   x = c("A","B","C","D","E","F","G","H","I","J"),
@@ -432,14 +409,43 @@ p4
 
 <div style="width:500px; height=400px">
 <img src="doc/mil.jpeg">
-</br>
-<img src="doc/vet.jpeg">
-</br>
+</div>
+
+### 4.5 Disability VS Marriage Performance
+```{r, echo=TRUE}
+# 1. bar chart for disability
+p <- plot_ly(
+  x = c('with disability', 'without disability'),
+  y = c(7924298,50876772),
+  name = 'good marriage performance',
+  type = 'bar'
+)
+p2 <- add_trace(
+  p,
+  x = c('with disability', 'without disability'),
+  y = c(3865462,18513842),
+  name = 'poor marriage performance',
+  type = 'bar'
+)
+p3 <- add_trace(
+  p2,
+  x = c('with disability', 'without disability'),
+  y = c(1568850, 5045137),
+  name = 'inferior marriage performance',
+  type = 'bar'
+)
+p4 <- layout(p3, barmode = "stack")
+p4
+```
+
+#### b. Dependency Plot
+<div style="width:500px; height=400px">
 <img src="doc/dis.jpeg">
 </div>
 
 
-### 4.5 Parallel Coordinates Plots
+
+### 4.6 Parallel Coordinates Plots
 
 <p>Parallel coordinates is a visualization technique used to plot individual data elements across many dimensions. Each of the dimensions corresponds to a vertical axis and each data element is displayed as a series of connected points along the dimensions/axes. This technique can have an explicit explanation of the corresponding categorical parameters.</p>
 
@@ -452,7 +458,7 @@ scpcp(subdata_new, sel="data[,6]", sel.palette = "w")
 
 ```
 
-### 4.6 Interactive Parallel Coordinates Plot
+### 4.7 Interactive Parallel Coordinates Plot
 
 <p>ALghouth, the previous static plot shows the relationships among those categorical variabales, this interactive parallel coordinates plot presents those relationships more explicitly.</p>
 
