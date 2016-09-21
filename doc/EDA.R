@@ -29,8 +29,6 @@ dis2fac.num <- count(dis[which(dis$DIS==2),], fac, wt = PWGTP)
 #set up dataframe
 disibility <- rep(1:2,c(dis.num$n))
 marriage.status <- c(rep(1:3,c(dis1fac.num$n)),rep(1:3,c(dis2fac.num$n)))
-#disibility <- factor(rep(1:2,c(dis.num$n)),labels=c("with dis","without dis"))
-#marriage.status <- factor(c(rep(1:3,c(dis1fac.num$n)),rep(1:3,c(dis2fac.num$n))),labels = c("good","not good","bad"))
 dis.plot <- data.frame(disibility,marriage.status)
 #get 10% sample
 subdis.plot <- dis.plot[sample(1:dim(dis.plot)[1], as.integer(dim(dis.plot)[1]/10), replace=FALSE),]
@@ -38,8 +36,7 @@ disibility <- factor(subdis.plot[,1],labels=c("with dis","without dis"))
 marriage.status <- factor(subdis.plot[,2], labels = c("good","not good","bad"))
 subdis.plot[,1] <- disibility
 subdis.plot[,2] <- marriage.status
-#str(subdis.plot)
-#mosic plot
+
 mosaic(~marriage.status+disibility,data = subdis.plot,shade=TRUE,labeling=labeling_values,
        main = "Dependency Plot about Disibility and Marraige Status", 
        sub = "Red: less likely   Blue: more likely")
