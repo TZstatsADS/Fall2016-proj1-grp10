@@ -1,4 +1,15 @@
 library(data.table)
+####
+data.14pusa <- fread("/Users/sun93/Documents/ADS/pro1/csv_pus/ss14pusa.csv")
+data.14pusb <- fread("/Users/sun93/Documents/ADS/pro1/csv_pus/ss14pusb.csv")
+#dim(total.variable1)
+#dim(total.variable2)
+
+#whole 2014 dataset(a&b)
+data_ori <- rbind(data.14pusa,data.14pusb)  
+####
+
+
 
 data1 <- fread('ss14pusa.csv')
 data2 <- fread('ss14pusb.csv')
@@ -76,11 +87,9 @@ write.table(data_MIL, 'data_MIL.csv', sep = ',', row.names = F)
 
 
 # Data contains all vars mentioned above
+
 data_final <- data_f
-data_all_var <- data_final[!is.na(DIS) & !is.na(RAC1P) & !is.na(SCHL) & !is.na(WAGP) & !is.na(VPS) & !is.na(MIL), list(DIS, RAC1P, SCHL, WAGP, VPS, MIL, fac)]
+data_all_var <- data_final[!is.na(DIS) & (RAC1P==1|RAC1P==2|RAC1P==3|RAC1P==6) & (SCHL==1|SCHL==16|SCHL==21|SCHL==22|SCHL==24) & !is.na(WAGP) & !is.na(MIL), list(DIS, RAC1P, SCHL, WAGP, MIL, PWGTP, fac)]
 write.table(data_all_var, 'data_all_var.csv', sep = ',', row.names = F)
-
-
-
 
 
