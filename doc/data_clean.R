@@ -1,20 +1,12 @@
 library(data.table)
-####
-data.14pusa <- fread("/Users/sun93/Documents/ADS/pro1/csv_pus/ss14pusa.csv")
-data.14pusb <- fread("/Users/sun93/Documents/ADS/pro1/csv_pus/ss14pusb.csv")
-#dim(total.variable1)
-#dim(total.variable2)
-
-#whole 2014 dataset(a&b)
-data_ori <- rbind(data.14pusa,data.14pusb)  
-####
-
-
+getwd()
+setwd("/Users/sun93/Documents/ADS/Fall2016-proj1-grp10/")
 
 data1 <- fread('ss14pusa.csv')
 data2 <- fread('ss14pusb.csv')
 data_ori <- rbind(data1, data2)
 as.data.table(data_ori)
+#dim(data_ori)
 
 databad <- data_ori[(MAR == 3 | MARHT >= 2)]
 datagood <- data_ori[(MAR != 3 & MARHT < 2)]
