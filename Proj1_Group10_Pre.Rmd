@@ -240,7 +240,7 @@ f <- function(col1){ #col1 ->col2
 }
 ```
 
-# 4 Bar Charts
+# 4 Data Visualization
 
 ```{r, echo=FALSE}
 ##setup environment
@@ -276,6 +276,9 @@ subdata = data[sample(1:dim(data)[1], as.integer(dim(data)[1]/10), replace=FALSE
 data_raw = data_raw[sample(1:dim(data_raw)[1], as.integer(dim(data_raw)[1]/10), replace=FALSE),]
 ```
 
+### 4.1 'For Richer or Poorer' --- Wages VS Marriage Performance 
+
+#### a. Boxplot
 ```{r, echo=TRUE}
 #plot
 ##wages: 
@@ -284,6 +287,7 @@ p <- plot_ly(ggplot2::diamonds, y = data_raw$WAGP  , color = data_raw$fac , type
 p
 ```
 
+#### b. Bar Chart
 ```{r, echo=TRUE}
 # 2. bar chart for wage
 p <- plot_ly(
@@ -305,8 +309,12 @@ p3 <- add_trace(
   type = "bar")
 p4 <- layout(p3, barmode = "stack")
 p4
+```
 
 
+### 4.2 'No Matter Who You Are' --- Races VS Marriage Performance 
+
+```{r, echo=TRUE}
 # 3.bar chart for race
 library(plotly)
 p <- plot_ly(
@@ -328,7 +336,11 @@ p3 <- add_trace(
   type = "bar")
 p4 <- layout(p3, barmode = "stack")
 p4
+```
 
+### 4.3 'No Matter How You Are' --- Education Level VS Marriage Performance 
+
+```{r, echo=TRUE}
 ##4. barchart for education
 library(plotly)
 p <- plot_ly(
@@ -350,8 +362,11 @@ p3 <- add_trace(
   type = "bar")
 p4 <- layout(p3, barmode = "stack")
 p4
+```
 
+### 4.4 'In Sickness and in Health' --- Military Status VS Marriage Performance 
 
+```{r, echo=TRUE}
 ##5. barchart for military
 p <- plot_ly(
   x = c("No duty", "Duty in pust", "Only duty for training", "Never served"),
@@ -375,7 +390,10 @@ p4
 
 
 ```
-# 5 Comparision (rename)??
+
+### 4.5 Parallel Coordinates Plots
+
+<p>Parallel coordinates is a visualization technique used to plot individual data elements across many dimensions. Each of the dimensions corresponds to a vertical axis and each data element is displayed as a series of connected points along the dimensions/axes. This technique can have an explicit explanation of the corresponding categorical parameters.</p>
 
 ```{r, echo=TRUE}
 ## Parallel coordinates plots
@@ -386,13 +404,14 @@ scpcp(subdata_new, sel="data[,6]", sel.palette = "w")
 
 ```
 
-###a more fancy plot
+### 4.6 Sankey Diagram
 
+Sankey diagram visualizes the magnitude of flow between nodes in a network. This intricate diagram shows a possible scenario for Marriage Performance and other related factors.
 [<img src="doc/parallel_plot.png">](https://hc2813.github.io/d3plot/)
 
 <a href="https://hc2813.github.io/d3plot/">(Click me!)</br></a>
 
 
-# 6 Conclusion
+# 5 Conclusion
 
 # 6 Next Step
