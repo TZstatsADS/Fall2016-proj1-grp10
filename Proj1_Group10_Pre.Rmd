@@ -254,7 +254,7 @@ require(plyr)
 
 
 #set direction
-setwd("~/Desktop/Fall2016-proj1-grp10/")
+setwd("~/Desktop/ADS/Fall2016-proj1-grp10/")
 
 #import data
 data <- fread('data/updated_data_all_var.csv')
@@ -289,6 +289,29 @@ p
 
 #### b. Bar Chart
 ```{r, echo=TRUE}
+# 1. bar chart for disability
+p <- plot_ly(
+  x = c('with disability', 'without disability'),
+  y = c(7924298,50876772),
+  name = 'good marriage performance',
+  type = 'bar'
+)
+p2 <- add_trace(
+  p,
+  x = c('with disability', 'without disability'),
+  y = c(3865462,18513842),
+  name = 'poor marriage performance',
+  type = 'bar'
+)
+p3 <- add_trace(
+  p2,
+  x = c('with disability', 'without disability'),
+  y = c(1568850, 5045137),
+  name = 'inferior marriage performance',
+  type = 'bar'
+)
+p4 <- layout(p3, barmode = "stack")
+p4
 # 2. bar chart for wage
 p <- plot_ly(
   x = c("A","B","C","D","E","F","G","H","I","J"),
@@ -429,9 +452,10 @@ scpcp(subdata_new, sel="data[,6]", sel.palette = "w")
 
 ```
 
-### 4.6 Sankey Diagram
+### 4.6 Interactive Parallel Coordinates Plot
 
-Sankey diagram visualizes the magnitude of flow between nodes in a network. This intricate diagram shows a possible scenario for Marriage Performance and other related factors.
+<p>ALghouth, the previous static plot shows the relationships among those categorical variabales, this interactive parallel coordinates plot presents those relationships more explicitly.</p>
+
 [<img src="doc/parallel_plot.png">](https://hc2813.github.io/d3plot/)
 
 <a href="https://hc2813.github.io/d3plot/">(Click me!)</br></a>
