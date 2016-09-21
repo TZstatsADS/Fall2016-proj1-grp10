@@ -12,7 +12,7 @@ output: html_document
 
 </br>
 
-![](https://github.com/TZstatsADS/Fall2016-proj1-grp10/blob/Jiayi_Wang2/doc/pic2.png)
+![](https://github.com/TZstatsADS/Fall2016-proj1-grp10/blob/master/doc/pic2.png)
 </div>
 
 </br>
