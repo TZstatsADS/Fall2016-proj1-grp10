@@ -316,13 +316,13 @@ p <- plot_ly(
 p2 <- add_trace(
   p,
   x = c("white", "black/africa Am.", "Am. Indian", "Asian"),
-  y = c(430131,11367450,6906974,3135660,539089),
+  y = c(19016007,2454439, 111502,797356 ),
   name = "poor marriage performance",
   type = "bar")
 p3 <- add_trace(
   p2,
   x = c("white", "black/africa Am.", "Am. Indian", "Asian"),
-  y = c(148481,3797101,1722793,797134,148478),
+  y = c(5861663,584583,39863,127878),
   name = "inferior marriage performance",
   type = "bar")
 p4 <- layout(p3, barmode = "stack")
