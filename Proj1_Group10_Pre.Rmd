@@ -8,11 +8,10 @@ output: html_document
 "In the name of God, I, take you, to be my husband/wife, to have and to hold from this day forward, for better or worse, for richer or poorer, in sickness and in health, to love and to cherish all the days of my life. This is my solemn vow."
 
 <div style="width:400px; height=300px">
-![](https://nyppagesix.files.wordpress.com/2016/09/brangelina.jpg?quality=90&strip=all&w=915)
-
+<img src="doc/pic1.jpg">
 </br>
 
-![](http://m1.ablwang.com/uploadfile/2015/1022/20151022105135976.png)
+<img src="doc/pic2.png">
 </div>
 
 </br>
@@ -241,10 +240,178 @@ f <- function(col1){ #col1 ->col2
 }
 ```
 
-# 4 Bar Charts (rename)??
+# 4 Data Visualization
 
-# 5 Comparision (rename)??
+```{r, echo=FALSE}
+##setup environment
+library(data.table)
+library(plotly)
+library(ggplot2)
+library(networkD3)
+library(extracat)
+require(rCharts)
+require(plyr)
 
-# 6 Conclusion
+
+#set direction
+setwd("~/Desktop/Fall2016-proj1-grp10/")
+
+#import data
+data <- fread('data/updated_data_all_var.csv')
+data$fac <- as.factor(data$fac)
+data$DIS <- as.factor(data$DIS)
+data$RAC1P <- as.factor(data$RAC1P)
+data$SCHL <- as.factor(data$SCHL)
+data$WAGP <- as.factor(data$WAGP)
+data$MIL <- as.factor(data$MIL)
+
+data_raw = data
+data$WAGP <- as.array(kmeans(data$WAGP, 10, nstart = 20)$cluster)
+
+
+#colnames(data)  #"DIS"   "RAC1P" "SCHL"  "WAGP"  "MIL"   "PWGTP" "fac"  
+
+#subset data
+subdata = data[sample(1:dim(data)[1], as.integer(dim(data)[1]/10), replace=FALSE),]
+data_raw = data_raw[sample(1:dim(data_raw)[1], as.integer(dim(data_raw)[1]/10), replace=FALSE),]
+```
+
+### 4.1 'For Richer or Poorer' --- Wages VS Marriage Performance 
+
+#### a. Boxplot
+```{r, echo=TRUE}
+#plot
+##wages: 
+# 1.box-plots for wage
+p <- plot_ly(ggplot2::diamonds, y = data_raw$WAGP  , color = data_raw$fac , type = "box")
+p
+```
+
+#### b. Bar Chart
+```{r, echo=TRUE}
+# 2. bar chart for wage
+p <- plot_ly(
+  x = c("A","B","C","D","E","F","G","H","I","J"),
+  y = c(377034,	25113657,	5645546,	7056107,	944659,	383814,	4157641,	2427844,	6522414,	6172354),
+  name = "good marriage performance",
+  type = "bar")
+p2 <- add_trace(
+  p,
+  x = c("A","B","C","D","E","F","G","H","I","J"),
+  y = c(114668,	9748396,	2379307,	2767572,	257943,	95312,	1315064,	696605,	2822095,	2182342),
+  name = "poor marriage performance",
+  type = "bar")
+p3 <- add_trace(
+  p2,
+  x = c("A","B","C","D","E","F","G","H","I","J"),
+  y = c(30508,	3396854,	696597,	708733,	46991,	18961,	278326,	161293,	758216,	517508),
+  name = "inferior marriage performance",
+  type = "bar")
+p4 <- layout(p3, barmode = "stack")
+p4
+```
+
+
+### 4.2 'No Matter Who You Are' --- Races VS Marriage Performance 
+
+```{r, echo=TRUE}
+# 3.bar chart for race
+library(plotly)
+p <- plot_ly(
+  x = c("white", "black/africa Am.", "Am. Indian", "Asian"),
+  y = c(48622273,4629716,204187,5344894),
+  name = "good marriage performance",
+  type = "bar")
+p2 <- add_trace(
+  p,
+  x = c("white", "black/africa Am.", "Am. Indian", "Asian"),
+  y = c(430131,11367450,6906974,3135660,539089),
+  name = "poor marriage performance",
+  type = "bar")
+p3 <- add_trace(
+  p2,
+  x = c("white", "black/africa Am.", "Am. Indian", "Asian"),
+  y = c(148481,3797101,1722793,797134,148478),
+  name = "inferior marriage performance",
+  type = "bar")
+p4 <- layout(p3, barmode = "stack")
+p4
+```
+
+### 4.3 'No Matter How You Are' --- Education Level VS Marriage Performance 
+
+```{r, echo=TRUE}
+##4. barchart for education
+library(plotly)
+p <- plot_ly(
+  x = c("No completed school", "high school", "bachelor", "master", "doctorate"),
+  y = c(1372324,23810758,2180033,1725501),
+  name = "good marriage performance",
+  type = "bar")
+p2 <- add_trace(
+  p,
+  x = c("No completed school", "high school", "bachelor", "master", "doctorate"),
+  y = c(430131,11367450,6906974,3135660,539089),
+  name = "poor marriage performance",
+  type = "bar")
+p3 <- add_trace(
+  p2,
+  x = c("No completed school", "high school", "bachelor", "master", "doctorate"),
+  y = c(148481,3797101,1722793,148478),
+  name = "inferior marriage performance",
+  type = "bar")
+p4 <- layout(p3, barmode = "stack")
+p4
+```
+
+### 4.4 'In Sickness and in Health' --- Military Status VS Marriage Performance 
+
+```{r, echo=TRUE}
+##5. barchart for military
+p <- plot_ly(
+  x = c("No duty", "Duty in pust", "Only duty for training", "Never served"),
+  y = c(202241,4757340,888360,52953129),
+  name = "good marriage performance",
+  type = "bar")
+p2 <- add_trace(
+  p,
+  x = c("No duty", "Duty in pust", "Only duty for training", "Never served"),
+  y = c(50390,2541718,409714,19377482),
+  name = "poor marriage performance",
+  type = "bar")
+p3 <- add_trace(
+  p2,
+  x = c("No duty", "Duty in pust", "Only duty for training", "Never served"),
+  y = c(7198,1047573,147901,5411315),
+  name = "inferior marriage performance",
+  type = "bar")
+p4 <- layout(p3, barmode = "stack")
+p4
+
+
+```
+
+### 4.5 Parallel Coordinates Plots
+
+<p>Parallel coordinates is a visualization technique used to plot individual data elements across many dimensions. Each of the dimensions corresponds to a vertical axis and each data element is displayed as a series of connected points along the dimensions/axes. This technique can have an explicit explanation of the corresponding categorical parameters.</p>
+
+```{r, echo=TRUE}
+## Parallel coordinates plots
+
+subdata = as.data.frame(subdata)
+subdata_new = subdata[,c(1,2,3,4,5,7)]
+scpcp(subdata_new, sel="data[,6]", sel.palette = "w")
+
+```
+
+### 4.6 Sankey Diagram
+
+Sankey diagram visualizes the magnitude of flow between nodes in a network. This intricate diagram shows a possible scenario for Marriage Performance and other related factors.
+[<img src="doc/parallel_plot.png">](https://hc2813.github.io/d3plot/)
+
+<a href="https://hc2813.github.io/d3plot/">(Click me!)</br></a>
+
+
+# 5 Conclusion
 
 # 6 Next Step
