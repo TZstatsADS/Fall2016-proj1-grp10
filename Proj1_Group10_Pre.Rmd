@@ -313,7 +313,7 @@ p4
 
 
 ### 4.2 'No Matter Who You Are' --- Races VS Marriage Performance 
-
+#### a. Bar Chart
 ```{r, echo=TRUE}
 # 3.bar chart for race
 library(plotly)
@@ -338,8 +338,15 @@ p4 <- layout(p3, barmode = "stack")
 p4
 ```
 
+#### b. Dependency Plot
+<div style="width:500px; height=400px">
+<img src="doc/race.jpeg">
+</div>
+
+
 ### 4.3 'No Matter How You Are' --- Education Level VS Marriage Performance 
 
+#### a. Bar Chart
 ```{r, echo=TRUE}
 ##4. barchart for education
 library(plotly)
@@ -364,8 +371,15 @@ p4 <- layout(p3, barmode = "stack")
 p4
 ```
 
+#### b. Dependency Plot
+<div style="width:500px; height=400px">
+<img src="doc/edu.jpeg">
+</div>
+
+
 ### 4.4 'In Sickness and in Health' --- Military Status VS Marriage Performance 
 
+#### a. Bar Chart
 ```{r, echo=TRUE}
 ##5. barchart for military
 p <- plot_ly(
@@ -390,6 +404,17 @@ p4
 
 
 ```
+
+#### b. Dependency Plot
+
+<div style="width:500px; height=400px">
+<img src="doc/mil.jpeg">
+</br>
+<img src="doc/vet.jpeg">
+</br>
+<img src="doc/dis.jpeg">
+</div>
+
 
 ### 4.5 Parallel Coordinates Plots
 
