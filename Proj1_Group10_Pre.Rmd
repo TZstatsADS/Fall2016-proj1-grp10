@@ -334,6 +334,10 @@ p4
 <img src="doc/race.jpeg">
 </div>
 
+#### c. Conclusion
+
+<p>White people tend to have more divoice and poor marriage performance, and the same with black people.  asian tend to have better marriage perfoemance while indian american may not be the same. .</p>
+
 
 ### 4.3 'No Matter How You Are' --- Education Level VS Marriage Performance 
 
@@ -462,7 +466,7 @@ scpcp(subdata_new, sel="data[,6]", sel.palette = "w")
 
 ### 4.7 Interactive Parallel Coordinates Plot
 
-<p>ALghouth, the previous static plot shows the relationships among those categorical variabales, this interactive parallel coordinates plot presents those relationships more explicitly.</p>
+<p>Alghouth, the previous static plot shows the relationships among those categorical variabales, this interactive parallel coordinates plot presents those relationships more explicitly.</p>
 
 [<img src="doc/parallel_plot.png">](https://hc2813.github.io/d3plot/)
 
