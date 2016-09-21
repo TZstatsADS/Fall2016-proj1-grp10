@@ -27,12 +27,18 @@ dis2fac.num <- count(dis[which(dis$DIS==2),], fac, wt = PWGTP)
 #subdata = data[sample(1:dim(data)[1], as.integer(dim(data)[1]/10), replace=FALSE),]
 
 #set up dataframe
-disibility <- factor(rep(1:2,c(dis.num$n)),labels=c("with dis","without dis"))
-marriage.status <- factor(c(rep(1:3,c(dis1fac.num$n)),rep(1:3,c(dis2fac.num$n))),labels = c("good","not good","bad"))
+disibility <- rep(1:2,c(dis.num$n))
+marriage.status <- c(rep(1:3,c(dis1fac.num$n)),rep(1:3,c(dis2fac.num$n)))
+#disibility <- factor(rep(1:2,c(dis.num$n)),labels=c("with dis","without dis"))
+#marriage.status <- factor(c(rep(1:3,c(dis1fac.num$n)),rep(1:3,c(dis2fac.num$n))),labels = c("good","not good","bad"))
 dis.plot <- data.frame(disibility,marriage.status)
 #get 10% sample
 subdis.plot <- dis.plot[sample(1:dim(dis.plot)[1], as.integer(dim(dis.plot)[1]/10), replace=FALSE),]
-
+disibility <- factor(subdis.plot[,1],labels=c("with dis","without dis"))
+marriage.status <- factor(subdis.plot[,2], labels = c("good","not good","bad"))
+subdis.plot[,1] <- disibility
+subdis.plot[,2] <- marriage.status
+#str(subdis.plot)
 #mosic plot
 mosaic(~marriage.status+disibility,data = subdis.plot,shade=TRUE,labeling=labeling_values,
        main = "Dependency Plot about Disibility and Marraige Status", 
@@ -54,11 +60,15 @@ mil2fac.num <- count(mil[which(mil$MIL==2),], fac, wt = PWGTP)
 mil3fac.num <- count(mil[which(mil$MIL==3),], fac, wt = PWGTP)
 mil4fac.num <- count(mil[which(mil$MIL==4),], fac, wt = PWGTP)
 #set up dataframe
-military <- factor(rep(1:4,c(mil.num$n)),labels=c("Now","Past","only","Never"))
-marriage.status <- factor(c(rep(1:3,c(mil1fac.num$n)),rep(1:3,c(mil2fac.num$n)),rep(1:3,c(mil3fac.num$n)),rep(1:3,c(mil4fac.num$n))),labels = c("good","not good","bad"))
+military <- rep(1:4,c(mil.num$n))
+marriage.status <- c(rep(1:3,c(mil1fac.num$n)),rep(1:3,c(mil2fac.num$n)),rep(1:3,c(mil3fac.num$n)),rep(1:3,c(mil4fac.num$n)))
 mil.plot <- data.frame(military,marriage.status)
 #get 10% sample
 submil.plot <- mil.plot[sample(1:dim(mil.plot)[1], as.integer(dim(mil.plot)[1]/10), replace=FALSE),]
+military <- factor(submil.plot$military, labels=c("Now","Past","only","Never"))
+marriage.status <- factor(submil.plot$marriage.status, labels = c("good","not good","bad"))
+submil.plot[,1] <- military
+submil.plot[,2] <- marriage.status
 
 #mosaic plot
 mosaic(~marriage.status+military,data = submil.plot,shade=TRUE,labeling=labeling_values,
@@ -80,11 +90,15 @@ rac2fac.num <- count(rac[which(rac$RAC1P==2),], fac, wt = PWGTP)
 rac3fac.num <- count(rac[which(rac$RAC1P==3),], fac, wt = PWGTP)
 rac4fac.num <- count(rac[which(rac$RAC1P==6),], fac, wt = PWGTP)
 #set up dataframe
-race <- factor(rep(1:4,c(rac.num$n)),labels=c("White","Black","Indian","Asian"))
-marriage.status <- factor(c(rep(1:3,c(rac1fac.num$n)),rep(1:3,c(rac2fac.num$n)),rep(1:3,c(rac3fac.num$n)),rep(1:3,c(rac4fac.num$n))),labels = c("good","not good","bad"))
+race <- rep(1:4,c(rac.num$n))
+marriage.status <- c(rep(1:3,c(rac1fac.num$n)),rep(1:3,c(rac2fac.num$n)),rep(1:3,c(rac3fac.num$n)),rep(1:3,c(rac4fac.num$n)))
 rac.plot <- data.frame(race,marriage.status)
 #get 10% sample
 subrac.plot <- rac.plot[sample(1:dim(rac.plot)[1], as.integer(dim(rac.plot)[1]/10), replace=FALSE),]
+race <- factor(subrac.plot$race,labels=c("White","Black","Indian","Asian"))
+marriage.status <- factor(subrac.plot$marriage.status,labels=c("good","not good","bad"))
+subrac.plot[,1] <- race
+subrac.plot[,2] <- marriage.status
 
 #mosaic plot
 mosaic(~marriage.status+race,data = subrac.plot,shade=TRUE,labeling=labeling_values,
@@ -109,13 +123,17 @@ schl21fac.num <- count(schl[which(schl$SCHL==21),], fac, wt = PWGTP)
 schl22fac.num <- count(schl[which(schl$SCHL==22),], fac, wt = PWGTP)
 schl24fac.num <- count(schl[which(schl$SCHL==24),], fac, wt = PWGTP)
 #set up dataframe
-education <- factor(rep(1:5,c(schl.num$n)),labels=c("No","High schl","Bachelor","Master","Doctorate"))
-marriage.status <- factor(c(rep(1:3,c(schl1fac.num$n)),rep(1:3,c(schl16fac.num$n)),rep(1:3,c(schl21fac.num$n)),rep(1:3,c(schl22fac.num$n)),rep(1:3,c(schl24fac.num$n))),labels = c("good","not good","bad"))
+education <- rep(1:5,c(schl.num$n))
+marriage.status <- c(rep(1:3,c(schl1fac.num$n)),rep(1:3,c(schl16fac.num$n)),rep(1:3,c(schl21fac.num$n)),rep(1:3,c(schl22fac.num$n)),rep(1:3,c(schl24fac.num$n)))
 schl.plot <- data.frame(education,marriage.status)
-#schl.plot$
+
 #get 10% sample
 subschl.plot <- schl.plot[sample(1:dim(schl.plot)[1], as.integer(dim(schl.plot)[1]/10), replace=FALSE),]
-#subschl.plot$
+education <- factor(subschl.plot$education,labels=c("No","High schl","Bachelor","Master","Doctorate"))
+marriage.status <- factor(subschl.plot$marriage.status,labels=c("good","not good","bad"))
+subschl.plot[,1] <- education
+subschl.plot[,2] <- marriage.status
+
 mosaic(~marriage.status+education, data = subschl.plot,shade=TRUE,labeling=labeling_values,
        main = "Dependency Plot about Education and Marraige Status", 
        sub = "Red: less likely   Blue: more likely")
@@ -137,11 +155,15 @@ vps6fac.num <- count(vps[which(vps$VPS==6),], fac, wt = PWGTP)
 vps11fac.num <- count(vps[which(vps$VPS==11),], fac, wt = PWGTP)
 
 #set up dataframe
-veteran <- factor(rep(1:3,c(vps.num$n)),labels=c("Gulf War","Vietnam Era","WWII"))
-marriage.status <- factor(c(rep(1:3,c(vps1fac.num$n)),rep(1:3,c(vps6fac.num$n)),rep(1:3,c(vps11fac.num$n))),labels = c("good","not good","bad"))
+veteran <- rep(1:3,c(vps.num$n))
+marriage.status <- c(rep(1:3,c(vps1fac.num$n)),rep(1:3,c(vps6fac.num$n)),rep(1:3,c(vps11fac.num$n)))
 vps.plot <- data.frame(veteran,marriage.status)
 #get 10% sample
 subvps.plot <- vps.plot[sample(1:dim(vps.plot)[1], as.integer(dim(vps.plot)[1]/10), replace=FALSE),]
+veteran <- factor(subvps.plot$veteran, labels=c("Gulf War","Vietnam Era","WWII"))
+marriage.status <- factor(subvps.plot$marriage.status,labels = c("good","not good","bad"))
+subvps.plot[,1] <- veteran
+subvps.plot[,2] <- marriage.status
 
 mosaic(~marriage.status+veteran,data = subvps.plot,shade=TRUE,labeling=labeling_values,
        main = "Dependency Plot about Veteran and Marraige Status", 
