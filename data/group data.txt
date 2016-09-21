@@ -1,0 +1,132 @@
+{"nodes":[
+{"name":"Income past 12 months on level A"}, //0
+{"name":"Income past 12 months on level B"},
+{"name":"Income past 12 months on level C"},
+{"name":"Income past 12 months on level D"},
+{"name":"Income past 12 months on level E"},
+{"name":"Income past 12 months on level F"},
+{"name":"Income past 12 months on level G"},
+{"name":"Income past 12 months on level H"},
+{"name":"Income past 12 months on level I"},
+{"name":"Income past 12 months on level J"}, //9
+    
+{"name":"With a disability"}, //10
+{"name":"Without a disability"}, //11
+    
+{"name":"No schooling completed"}, //12
+{"name":"Regular high school diploma"}, //13
+{"name":"Bachelor's degree"}, //14
+{"name":"Master's degree"}, //15
+{"name":"Doctorate degree"}, //16
+    
+{"name":"White"}, //17
+{"name":"Black or African American"}, //18
+{"name":"American Indian"}, //19
+{"name":"Asian"}, //20
+
+{"name":"Military: Now on active duty"}, //21
+{"name":"Military: On active duty in the past, but not now"}, //22
+{"name":"Military: Only on active duty for training in Reserves/National Guard"}, //23
+{"name":"Military: Never served in the military"}, //24
+    
+{"name":"GOOD"}, //25
+{"name":"Just So So"}, //26
+{"name":"Bad"} //27
+],
+ 
+"links":[
+{"source":0,"target":10,"value”:19302},
+{"source":1,"target":10,"value”:10891691},
+{"source":2,"target":10,"value”:689227},
+{"source":3,"target":10,"value”:494875},
+{"source":4,"target":10,"value”:30181},    
+{"source":5,"target":10,"value”:13375},    
+{"source":6,"target":10,"value”:196147},    
+{"source":7,"target":10,"value”:101816},    
+{"source":8,"target":10,"value”:583249},    
+{"source":9,"target":10,"value”:338747}, //
+    
+{"source":0,"target":11,"value”:502908},
+{"source":1,"target":11,"value”:27367216},
+{"source":2,"target":11,"value”:8032223},
+{"source":3,"target":11,"value”:10037537},
+{"source":4,"target":11,"value”:1219412},    
+{"source":5,"target":11,"value”:484712},    
+{"source":6,"target":11,"value”:5554884},    
+{"source":7,"target":11,"value”:3183926},    
+{"source":8,"target":11,"value”:9519476},    
+{"source":9,"target":11,"value”:8533457}, //
+    
+{"source":10,"target":12,"value”:653133},
+{"source":10,"target":13,"value”:8331476},
+{"source":10,"target":14,"value”:2886472},
+{"source":10,"target":15,"value”:1253248},
+{"source":10,"target":16,"value”:234281},//
+    
+{"source":11,"target":12,"value”:1297803},
+{"source":11,"target":13,"value”:30643833},
+{"source":11,"target":14,"value”:27543628},
+{"source":11,"target":15,"value”:12771700},
+{"source":11,"target":16,"value”:2178787},  //
+    
+{"source":12,"target":17,"value”:1260921},
+{"source":13,"target":17,"value”:33176925},
+{"source":14,"target":17,"value”:25605228},
+{"source":15,"target":17,"value”:11548244},
+{"source":16,"target":17,"value”:1908625}, //
+    
+{"source":12,"target":18,"value”:242113},
+{"source":13,"target":18,"value”:4194881},
+{"source":14,"target":18,"value”:2031232},
+{"source":15,"target":18,"value”:1058075},
+{"source":16,"target":18,"value”:142437}, //
+    
+{"source":12,"target":19,"value”:14625},
+{"source":13,"target":19,"value”:212419},
+{"source":14,"target":19,"value”:86422},
+{"source":15,"target":19,"value”:36345},
+{"source":16,"target":19,"value”:5741}, //
+    
+{"source":12,"target":20,"value”:433277},
+{"source":13,"target":20,"value”:1391084},
+{"source":14,"target":20,"value”:2707218},
+{"source":15,"target":20,"value”:1382284},
+{"source":16,"target":20,"value”:356265},//
+    
+    
+{"source":17,"target":21,"value”:221262},//race -> military
+{"source":18,"target":21,"value”:31060},
+{"source":19,"target":21,"value”:794},
+{"source":20,"target":21,"value”:6713},
+    
+{"source":17,"target":22,"value”:7341312},
+{"source":18,"target":22,"value”:842189},
+{"source":19,"target":22,"value”:39462},
+{"source":20,"target":22,"value”:123668},
+    
+{"source":17,"target":23,"value”:1306465},
+{"source":18,"target":23,"value”:109806},
+{"source":19,"target":23,"value”:4805},
+{"source":20,"target":23,"value”:24899},
+    
+{"source":17,"target":24,"value”:64630904},
+{"source":18,"target":24,"value”:6685683},
+{"source":19,"target":24,"value”:310491},
+{"source":20,"target":24,"value”:6114848},
+
+{"source":21,"target":25,"value”:202241},//military -> fac
+{"source":21,"target":26,"value”:50390},
+{"source":21,"target":27,"value”:7198},
+
+{"source":22,"target":25,"value”:4757340},
+{"source":22,"target":26,"value”:2541718},
+{"source":22,"target":27,"value”:1047573},
+
+{"source":23,"target":25,"value”:888360},
+{"source":23,"target":26,"value”:409714},
+{"source":23,"target":27,"value”:147901},
+
+{"source":24,"target":25,"value”:52953129},
+{"source":24,"target":26,"value”:19377482},
+{"source":24,"target":27,"value”:5411315},
+]}
