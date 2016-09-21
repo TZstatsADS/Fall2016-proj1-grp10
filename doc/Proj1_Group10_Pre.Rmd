@@ -8,11 +8,11 @@ output: html_document
 "In the name of God, I, take you, to be my husband/wife, to have and to hold from this day forward, for better or worse, for richer or poorer, in sickness and in health, to love and to cherish all the days of my life. This is my solemn vow."
 
 <div style="width:400px; height=300px">
-![](https://nyppagesix.files.wordpress.com/2016/09/brangelina.jpg?quality=90&strip=all&w=915)
+![](pic1.jpg)
 
 </br>
 
-![](http://m1.ablwang.com/uploadfile/2015/1022/20151022105135976.png)
+![](pic2.png)
 </div>
 
 </br>
