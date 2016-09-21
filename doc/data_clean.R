@@ -37,7 +37,7 @@ data_f <- rbind(datagood, databad1, databad2)
 # 1 .With a disability
 # 2 .Without a disability
 data_final <- data_f
-data_dis <- data_final[!is.na(DIS), list(DIS, fac)]
+data_dis <- data_final[!is.na(DIS), list(DIS, PWGTP,fac)]
 write.table(data_dis, 'data_dis.csv',sep = ',', row.names = F)
 
 
@@ -47,7 +47,7 @@ write.table(data_dis, 'data_dis.csv',sep = ',', row.names = F)
 # 3 .American Indian alone
 # 6 .Asian alone
 data_final <- data_f
-data_RAC1P <- data_final[RAC1P==1|RAC1P==2|RAC1P==3|RAC1P==6, list(RAC1P, fac)]
+data_RAC1P <- data_final[RAC1P==1|RAC1P==2|RAC1P==3|RAC1P==6, list(RAC1P, PWGTP,fac)]
 write.table(data_RAC1P, 'data_RAC1P.csv', sep = ',', row.names = F)
 
 #SCHL (Educational attainment)
@@ -57,13 +57,13 @@ write.table(data_RAC1P, 'data_RAC1P.csv', sep = ',', row.names = F)
 # 22 .Master's degree
 # 24 .Doctorate degree
 data_final <- data_f
-data_SCHL <- data_final[SCHL==1|SCHL==16|SCHL==21|SCHL==22|SCHL==24, list(SCHL, fac)]
+data_SCHL <- data_final[SCHL==1|SCHL==16|SCHL==21|SCHL==22|SCHL==24, list(SCHL,PWGTP, fac)]
 write.table(data_SCHL, 'data_SCHL.csv', sep = ',', row.names = F)
 
 
 #WAGP (Wages or salary income past 12 months)
 data_final <- data_f
-data_WAGP <- data_final[!is.na(WAGP), list(WAGP, fac)]
+data_WAGP <- data_final[!is.na(WAGP), list(WAGP, PWGTP,fac)]
 write.table(data_WAGP, 'data_WAGP.csv', sep = ',', row.names = F)
 
 
@@ -72,7 +72,7 @@ write.table(data_WAGP, 'data_WAGP.csv', sep = ',', row.names = F)
 # 6 .Vietnam Era
 # 11 .WWII
 data_final <- data_f
-data_VPS <- data_final[VPS==1|VPS==6|VPS==11, list(VPS, fac)]
+data_VPS <- data_final[VPS==1|VPS==6|VPS==11, list(VPS, PWGTP,fac)]
 write.table(data_VPS, 'data_VPS.csv', sep = ',', row.names = F)
 
 
@@ -82,7 +82,7 @@ write.table(data_VPS, 'data_VPS.csv', sep = ',', row.names = F)
 # 3 .Only on active duty for training in Reserves/National Guard 
 # 4 .Never served in the military
 data_final <- data_f
-data_MIL <- data_final[!is.na(MIL), list(MIL, fac)]
+data_MIL <- data_final[!is.na(MIL), list(MIL, PWGTP,fac)]
 write.table(data_MIL, 'data_MIL.csv', sep = ',', row.names = F)
 
 
@@ -91,8 +91,3 @@ write.table(data_MIL, 'data_MIL.csv', sep = ',', row.names = F)
 data_final <- data_f
 data_all_var <- data_final[!is.na(DIS) & (RAC1P==1|RAC1P==2|RAC1P==3|RAC1P==6) & (SCHL==1|SCHL==16|SCHL==21|SCHL==22|SCHL==24) & !is.na(WAGP) & !is.na(MIL), list(DIS, RAC1P, SCHL, WAGP, MIL, PWGTP, fac)]
 write.table(data_all_var, 'data_all_var.csv', sep = ',', row.names = F)
-<<<<<<< HEAD
-
-
-=======
->>>>>>> origin/master
